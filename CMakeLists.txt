@@ -52,9 +52,23 @@ ENDIF()
 
 DEAL_II_INITIALIZE_CACHED_VARIABLES()
 
+DEAL_II_QUERY_GIT_INFORMATION(PARTEXA)
+MESSAGE("--")
+MESSAGE("-- PartExa branch: " ${PARTEXA_GIT_BRANCH})
+MESSAGE("-- PartExa hash:   " ${PARTEXA_GIT_REVISION})
+MESSAGE("--")
+MESSAGE("-- deal.II branch: " ${DEAL_II_GIT_BRANCH})
+MESSAGE("-- deal.II hash:   " ${DEAL_II_GIT_REVISION})
+MESSAGE("--")
+
+CONFIGURE_FILE(
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/partexa/base/revision.h.in
+  ${CMAKE_CURRENT_BINARY_DIR}/include/partexa/base/revision.h
+  )
+
 PROJECT(partexa)
 
-INCLUDE_DIRECTORIES(include)
+INCLUDE_DIRECTORIES(include ${CMAKE_CURRENT_BINARY_DIR}/include)
 
 ADD_LIBRARY(partexa
   source/dummy.cc
