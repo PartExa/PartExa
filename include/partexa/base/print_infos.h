@@ -26,21 +26,22 @@
 
 namespace PartExa
 {
+  //! print PartExa header
   inline void
   print_partexa_header(dealii::ConditionalOStream const &pcout)
   {
     // clang-format off
-    pcout << std::endl
-    << "________________________________________________________________________________" << std::endl
-    << "                       ____           _   _____                                 " << std::endl
-    << "                      |  _ \\__ _ _ __| |_| ____|_  _ __ _                      " << std::endl
-    << "                      | |_)| _` | '__| __|  _| \\ \\/ / _` |                    " << std::endl
-    << "                      |  __/(_| | |  | |_| |___ >  < (_| |                      " << std::endl
-    << "                      |_|  \\__,_|_|  \\___|_____/_/\\_\\__,_|                  " << std::endl
-    << "                                                                                " << std::endl
-    << "                      A Particle Library for the Exa-Scale                      " << std::endl
-    << "________________________________________________________________________________" << std::endl
-    << std::endl;
+    pcout << std::endl;
+    pcout << "________________________________________________________________________________" << std::endl;
+    pcout << "                       ____           _   _____                                 " << std::endl;
+    pcout << "                      |  _ \\__ _ _ __| |_| ____|_  _ __ _                      " << std::endl;
+    pcout << "                      | |_)| _` | '__| __|  _| \\ \\/ / _` |                    " << std::endl;
+    pcout << "                      |  __/(_| | |  | |_| |___ >  < (_| |                      " << std::endl;
+    pcout << "                      |_|  \\__,_|_|  \\___|_____/_/\\_\\__,_|                  " << std::endl;
+    pcout << "                                                                                " << std::endl;
+    pcout << "                      A Particle Library for the Exa-Scale                      " << std::endl;
+    pcout << "________________________________________________________________________________" << std::endl;
+    pcout << std::endl;
     // clang-format on
   }
 
