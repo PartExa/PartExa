@@ -72,7 +72,7 @@ IncludeCategories:
     Priority: -1
 
 # PartExa folders in specific order
-  - Regex:    "base/.*\\.h"
+  - Regex:    "partexa/base/.*\\.h"
     Priority: 10
 
 # deal.II folders in sorted order:
