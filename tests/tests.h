@@ -136,11 +136,6 @@ struct MPILogInitAll
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-#  ifdef DEAL_II_WITH_PETSC
-    check_petsc_allocations();
-    MPI_Barrier(MPI_COMM_WORLD);
-#  endif
-
     if (myid == 0)
     {
       for (unsigned int i = 1; i < nproc; ++i)
