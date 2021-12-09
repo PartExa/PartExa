@@ -22,25 +22,53 @@
 #ifndef partexa_base_print_infos_h
 #define partexa_base_print_infos_h
 
+#include <partexa/base/revision.h>
+
 #include <deal.II/base/conditional_ostream.h>
+#include <deal.II/base/revision.h>
 
 namespace PartExa
 {
+  //! print PartExa header
   inline void
   print_partexa_header(dealii::ConditionalOStream const &pcout)
   {
     // clang-format off
-    pcout << std::endl
-    << "________________________________________________________________________________" << std::endl
-    << "                       ____           _   _____                                 " << std::endl
-    << "                      |  _ \\__ _ _ __| |_| ____|_  _ __ _                      " << std::endl
-    << "                      | |_)| _` | '__| __|  _| \\ \\/ / _` |                    " << std::endl
-    << "                      |  __/(_| | |  | |_| |___ >  < (_| |                      " << std::endl
-    << "                      |_|  \\__,_|_|  \\___|_____/_/\\_\\__,_|                  " << std::endl
-    << "                                                                                " << std::endl
-    << "                      A Particle Library for the Exa-Scale                      " << std::endl
-    << "________________________________________________________________________________" << std::endl
-    << std::endl;
+    pcout << std::endl;
+    pcout << "________________________________________________________________________________" << std::endl;
+    pcout << "                       ____           _   _____                                 " << std::endl;
+    pcout << "                      |  _ \\__ _ _ __| |_| ____|_  _ __ _                      " << std::endl;
+    pcout << "                      | |_)| _` | '__| __|  _| \\ \\/ / _` |                    " << std::endl;
+    pcout << "                      |  __/(_| | |  | |_| |___ >  < (_| |                      " << std::endl;
+    pcout << "                      |_|  \\__,_|_|  \\___|_____/_/\\_\\__,_|                  " << std::endl;
+    pcout << "                                                                                " << std::endl;
+    pcout << "                      A Particle Library for the Exa-Scale                      " << std::endl;
+    pcout << "________________________________________________________________________________" << std::endl;
+    pcout << std::endl;
+    // clang-format on
+  }
+
+  //! print PartExa version
+  inline void
+  print_partexa_version(dealii::ConditionalOStream const &pcout)
+  {
+    // clang-format off
+    pcout << std::endl;
+    pcout << "PartExa branch: " PARTEXA_GIT_BRANCH << std::endl;
+    pcout << "PartExa hash:   " PARTEXA_GIT_REVISION << std::endl;
+    pcout << std::endl;
+    // clang-format on
+  }
+
+  //! print deal.II version
+  inline void
+  print_dealii_version(dealii::ConditionalOStream const &pcout)
+  {
+    // clang-format off
+    pcout << std::endl;
+    pcout << "deal.II branch: " DEAL_II_GIT_BRANCH << std::endl;
+    pcout << "deal.II hash:   " DEAL_II_GIT_REVISION << std::endl;
+    pcout << std::endl;
     // clang-format on
   }
 
