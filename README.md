@@ -12,6 +12,11 @@ The major features of PartExa include
 
 Making use of the sophisticated interfaces and data structures provided by deal.II facilitates the coupling of PartExa with other deal.II-based programs.
 
+## Continuous Integration
+
+[![Indent](https://github.com/PartExa/PartExa/workflows/Indent/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3AIndent)
+[![GitHub CI](https://github.com/PartExa/PartExa/workflows/GitHub%20CI/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3A%22GitHub+CI%22)
+
 ## Releases
 
 PartExa is still at the beginning of its journey and under active development. Accordingly, the description above outlines the objectives of PartExa.
