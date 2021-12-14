@@ -1,0 +1,48 @@
+name: Doxygen
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+  - cron:  '0 0 * * 0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: dealii/dealii:master-focal
+
+    steps:
+      - name: Setup
+        run: |
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - uses: actions/checkout@v2
+      
+      - name: Compile
+        run: |
+          mkdir build
+          cd build
+          cmake ../ -DCMAKE_BUILD_TYPE=Release
+          make doxygen
+
+      - name: Test
+        run: |
+          cd build/doc/doxygen
+          if [ ! -f doxygen.out ]; then echo "No Doxygen output file found!"; exit 1; else echo "Doxygen finished with the following output:"; cat doxygen.out; fi
+          if [ ! -f doxygen.err ]; then echo "No Doxygen error file found!"; exit 1; fi
+          if [ -s doxygen.err ]; then echo "Doxygen failed with the following error(s):"; cat doxygen.err; exit 1; else echo "Doxygen passed."; fi
+
+      - name: Deploy
+        if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY_DOXYGEN }}
+          external_repository: PartExa/PartExa-Doxygen
+          publish_branch: master
+          publish_dir: ./build/doc/doxygen/html
