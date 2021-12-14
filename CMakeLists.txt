@@ -88,6 +88,9 @@ ADD_CUSTOM_TARGET(release
   COMMENT "Switch CMAKE_BUILD_TYPE to Release"
   )
 
+# enable documentation
+ADD_SUBDIRECTORY(doc/doxygen)
+
 # enable testing framework
 ENABLE_TESTING()
 ADD_SUBDIRECTORY(tests)
