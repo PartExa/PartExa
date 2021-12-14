@@ -19,7 +19,6 @@ jobs:
       - name: Setup
         run: |
           sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-          sudo chown -R $USER:$USER $HOME
           sudo apt-get update
           sudo apt-get install -y doxygen graphviz
 
@@ -39,6 +38,10 @@ jobs:
           if [ ! -f doxygen.err ]; then echo "No Doxygen error file found!"; exit 1; fi
           if [ -s doxygen.err ]; then echo "Doxygen failed with the following error(s):"; cat doxygen.err; exit 1; else echo "Doxygen passed."; fi
 
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Deploy
         if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
         uses: peaceiris/actions-gh-pages@v3
