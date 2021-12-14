@@ -33,7 +33,7 @@ IF (${DOXYGEN_FOUND})
     
   # define doxygen build type
   ADD_CUSTOM_TARGET(doxygen
-    COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+    COMMAND ${DOXYGEN_EXECUTABLE} Doxyfile > doxygen.out
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Generating Doxygen documentation"
     )
