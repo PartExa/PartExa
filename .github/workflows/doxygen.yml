@@ -14,14 +14,13 @@ jobs:
     
     container:
       image: dealii/dealii:master-focal
+      options: --user root
 
     steps:
       - name: Setup
         run: |
-          sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-          sudo chown -R $USER:$USER $HOME
-          sudo apt-get update
-          sudo apt-get install -y doxygen graphviz
+          apt-get update
+          apt-get install -y doxygen graphviz
 
       - uses: actions/checkout@v2
       
