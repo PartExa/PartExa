@@ -62,13 +62,13 @@ MESSAGE("-- deal.II hash:   " ${DEAL_II_GIT_REVISION})
 MESSAGE("--")
 
 CONFIGURE_FILE(
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/partexa/base/revision.h.in
-  ${CMAKE_CURRENT_BINARY_DIR}/include/partexa/base/revision.h
+  ${CMAKE_SOURCE_DIR}/include/partexa/base/revision.h.in
+  ${CMAKE_BINARY_DIR}/include/partexa/base/revision.h
   )
 
 PROJECT(partexa)
 
-INCLUDE_DIRECTORIES(include ${CMAKE_CURRENT_BINARY_DIR}/include)
+INCLUDE_DIRECTORIES(include ${CMAKE_BINARY_DIR}/include)
 
 ADD_LIBRARY(partexa
   source/dummy.cc
