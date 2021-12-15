@@ -1,0 +1,65 @@
+name: Coverage
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+  - cron:  '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: dealii/dealii:master-focal
+      options: --user root
+
+    steps:
+      - name: Setup
+        run: |
+          apt-get update
+          apt-get install -y lcov
+          
+      - uses: actions/checkout@v2
+
+      - name: Compile
+        run: |
+          mkdir build
+          cd build
+          cmake ../ -DCMAKE_CXX_FLAGS="-Werror -O0 -fprofile-arcs -ftest-coverage" -DCMAKE_EXE_LINKER_FLAGS="-lgcov" -DCMAKE_BUILD_TYPE=Release
+          make test
+          
+      - name: Generate
+        run: |
+          lcov --capture --initial --no-external --directory ./build --base-directory . --output-file partexa_coverage_base.info
+          lcov --capture --no-external --directory ./build --base-directory . --output-file partexa_coverage_tests.info
+          lcov --add-tracefile partexa_coverage_base.info --add-tracefile partexa_coverage_tests.info --output-file partexa_coverage.info
+          lcov --remove partexa_coverage.info '*/tests/*' '*/CMakeCXXCompilerId.cpp' -o partexa_coverage_filtered.info
+          genhtml partexa_coverage_filtered.info --legend --demangle-cpp --output-directory ./coverage_report --title "PartExa coverage report"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: ./coverage_report
+
+  deploy:
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+          path: ./coverage_report
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY_COVERAGE }}
+          external_repository: PartExa/PartExa-Coverage
+          publish_branch: master
+          publish_dir: ./coverage_report
