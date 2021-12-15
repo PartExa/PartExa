@@ -7,6 +7,7 @@ on:
     branches: [ master ]
   schedule:
   - cron:  '0 0 * * 0'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -39,7 +40,7 @@ jobs:
           if [ -s doxygen.err ]; then echo "Doxygen failed with the following error(s):"; cat doxygen.err; exit 1; else echo "Doxygen passed."; fi
 
       - name: Deploy
-        if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY_DOXYGEN }}
