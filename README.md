@@ -12,10 +12,15 @@ The major features of PartExa include
 
 Making use of the sophisticated interfaces and data structures provided by deal.II facilitates the coupling of PartExa with other deal.II-based programs.
 
+## Documentation
+
+A source code documentation of PartExa is provided with [Doxygen](https://partexa.github.io/PartExa-Doxygen/).
+
 ## Continuous Integration
 
 [![Indent](https://github.com/PartExa/PartExa/workflows/Indent/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3AIndent)
 [![GitHub CI](https://github.com/PartExa/PartExa/workflows/GitHub%20CI/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3A%22GitHub+CI%22)
+[![Doxygen](https://github.com/PartExa/PartExa/workflows/Doxygen/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ADoxygen)
 
 ## Releases
 
