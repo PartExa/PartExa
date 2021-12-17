@@ -32,11 +32,12 @@ jobs:
           
       - name: Generate
         run: |
-          lcov --capture --initial --no-external --directory ./build --base-directory . --output-file partexa_coverage_base.info
-          lcov --capture --no-external --directory ./build --base-directory . --output-file partexa_coverage_tests.info
-          lcov --add-tracefile partexa_coverage_base.info --add-tracefile partexa_coverage_tests.info --output-file partexa_coverage.info
-          lcov --remove partexa_coverage.info '*/tests/*' '*/CMakeCXXCompilerId.cpp' -o partexa_coverage_filtered.info
-          genhtml partexa_coverage_filtered.info --legend --demangle-cpp --output-directory ./coverage_report --title "PartExa coverage report"
+          lcov --capture --initial --no-external --directory ./build --base-directory . --output-file coverage_base.info >> coverage.out 2>> coverage.err
+          lcov --capture --no-external --directory ./build --base-directory . --output-file coverage_tests.info >> coverage.out 2>> coverage.err
+          lcov --add-tracefile coverage_base.info --add-tracefile coverage_tests.info --output-file coverage.info >> coverage.out 2>> coverage.err
+          lcov --remove coverage.info '*/tests/*' '*/CMakeCXXCompilerId.cpp' -o coverage_filtered.info >> coverage.out 2>> coverage.err  2>> coverage.err
+          genhtml coverage_filtered.info --legend --demangle-cpp --output-directory ./coverage_report --title "PartExa coverage report" >> coverage.out 2>> coverage.err
+          grep "Overall coverage rate:" -A 2 coverage.out
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
