@@ -19,21 +19,20 @@
 ##
 ## ---------------------------------------------------------------------
 
-FIND_PACKAGE(Doxygen QUIET)
+FIND_PACKAGE(Sphinx QUIET)
 
-IF (${DOXYGEN_FOUND})
+IF (${SPHINX_FOUND})
 
-  MESSAGE("-- Configuring Doxygen documentation")
+  MESSAGE("-- Configuring Sphinx documentation")
 
-  CONFIGURE_FILE(
-    ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-    )
-    
-  ADD_CUSTOM_TARGET(doxygen
-    COMMAND ${DOXYGEN_EXECUTABLE} Doxyfile > doxygen.out
+  SET(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR})
+  SET(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/html)
+  SET(PARTEXA_LOGO ${CMAKE_SOURCE_DIR}/doc/logo/logo_white_rounded_small.png)
+
+  ADD_CUSTOM_TARGET(sphinx
+    COMMAND ${SPHINX_EXECUTABLE} -b html -w sphinx.err -Dhtml_logo=${PARTEXA_LOGO} ${SPHINX_SOURCE} ${SPHINX_BUILD} > sphinx.out
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMENT "Generating Doxygen documentation"
+    COMMENT "Generating Sphinx documentation"
     )
 
 ENDIF ()

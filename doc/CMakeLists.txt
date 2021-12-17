@@ -19,21 +19,5 @@
 ##
 ## ---------------------------------------------------------------------
 
-FIND_PACKAGE(Doxygen QUIET)
-
-IF (${DOXYGEN_FOUND})
-
-  MESSAGE("-- Configuring Doxygen documentation")
-
-  CONFIGURE_FILE(
-    ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-    )
-    
-  ADD_CUSTOM_TARGET(doxygen
-    COMMAND ${DOXYGEN_EXECUTABLE} Doxyfile > doxygen.out
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMENT "Generating Doxygen documentation"
-    )
-
-ENDIF ()
+ADD_SUBDIRECTORY(doxygen)
+ADD_SUBDIRECTORY(sphinx)

@@ -19,21 +19,14 @@
 ##
 ## ---------------------------------------------------------------------
 
-FIND_PACKAGE(Doxygen QUIET)
+FIND_PROGRAM(SPHINX_EXECUTABLE
+  NAMES sphinx-build
+  DOC "Path to sphinx-build executable"
+  )
 
-IF (${DOXYGEN_FOUND})
+INCLUDE(FindPackageHandleStandardArgs)
 
-  MESSAGE("-- Configuring Doxygen documentation")
-
-  CONFIGURE_FILE(
-    ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-    )
-    
-  ADD_CUSTOM_TARGET(doxygen
-    COMMAND ${DOXYGEN_EXECUTABLE} Doxyfile > doxygen.out
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMENT "Generating Doxygen documentation"
-    )
-
-ENDIF ()
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(Sphinx
+  "Failed to find sphinx-build executable"
+  SPHINX_EXECUTABLE
+  )
