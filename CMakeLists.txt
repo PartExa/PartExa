@@ -23,6 +23,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.12.0)
 
 ADD_SUBDIRECTORY(cmake)
 
+LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/)
+
 PRINT_PARTEXA_HEADER()
 
 # deal.II
@@ -89,7 +91,7 @@ ADD_CUSTOM_TARGET(release
   )
 
 # enable documentation
-ADD_SUBDIRECTORY(doc/doxygen)
+ADD_SUBDIRECTORY(doc)
 
 # enable testing framework
 ENABLE_TESTING()

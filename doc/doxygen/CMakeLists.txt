@@ -19,7 +19,6 @@
 ##
 ## ---------------------------------------------------------------------
 
-# Doxygen
 FIND_PACKAGE(Doxygen QUIET)
 
 IF (${DOXYGEN_FOUND})
@@ -31,7 +30,6 @@ IF (${DOXYGEN_FOUND})
     ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
     )
     
-  # define doxygen build type
   ADD_CUSTOM_TARGET(doxygen
     COMMAND ${DOXYGEN_EXECUTABLE} Doxyfile > doxygen.out
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

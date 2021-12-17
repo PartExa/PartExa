@@ -19,4 +19,14 @@
 ##
 ## ---------------------------------------------------------------------
 
-ADD_SUBDIRECTORY(base)
+FIND_PROGRAM(SPHINX_EXECUTABLE
+  NAMES sphinx-build
+  DOC "Path to sphinx-build executable"
+  )
+
+INCLUDE(FindPackageHandleStandardArgs)
+
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(Sphinx
+  "Failed to find sphinx-build executable"
+  SPHINX_EXECUTABLE
+  )

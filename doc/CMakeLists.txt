@@ -19,4 +19,5 @@
 ##
 ## ---------------------------------------------------------------------
 
-ADD_SUBDIRECTORY(base)
+ADD_SUBDIRECTORY(doxygen)
+ADD_SUBDIRECTORY(sphinx)
