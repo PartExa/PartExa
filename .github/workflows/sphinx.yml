@@ -1,0 +1,78 @@
+name: Sphinx
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+  - cron:  '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: dealii/dealii:master-focal
+      options: --user root
+
+    steps:
+      - name: Setup
+        run: |
+          apt-get update
+          apt-get install -y python3.8-venv
+
+      - uses: actions/checkout@v2
+
+      - name: Environment
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install sphinx sphinx_rtd_theme
+        shell: bash
+
+      - name: Compile
+        run: |
+          source venv/bin/activate
+          mkdir build
+          cd build
+          cmake ../ -DCMAKE_BUILD_TYPE=Release
+          make sphinx
+        shell: bash
+
+      - name: Test
+        run: |
+          cd build/doc/sphinx
+          if [ ! -f sphinx.out ]; then echo "No Sphinx output file found!"; exit 1; else echo "Sphinx finished with the following output:"; cat sphinx.out; fi
+          if [ ! -f sphinx.err ]; then echo "No Sphinx error file found!"; exit 1; fi
+          if [ -s sphinx.err ]; then echo "Sphinx failed with the following error(s):"; cat sphinx.err; exit 1; else echo "Sphinx passed."; fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sphinx
+          path: ./build/doc/sphinx/html
+
+  deploy:
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: sphinx
+          path: ./build/doc/sphinx/html
+
+      - name: Disable Jekyll build
+        run: touch ./build/doc/sphinx/html/.nojekyll
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY_SPHINX }}
+          external_repository: PartExa/PartExa-Sphinx
+          publish_branch: master
+          publish_dir: ./build/doc/sphinx/html
