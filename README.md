@@ -15,12 +15,14 @@ Making use of the sophisticated interfaces and data structures provided by deal.
 ## Documentation
 
 A source code documentation of PartExa is provided with [Doxygen](https://partexa.github.io/PartExa-Doxygen/).
+The test coverage of PartExa is given in this [coverage report](https://partexa.github.io/PartExa-Coverage/).
 
 ## Continuous Integration
 
 [![Indent](https://github.com/PartExa/PartExa/workflows/Indent/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3AIndent)
 [![GitHub CI](https://github.com/PartExa/PartExa/workflows/GitHub%20CI/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3A%22GitHub+CI%22)
 [![Doxygen](https://github.com/PartExa/PartExa/workflows/Doxygen/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ADoxygen)
+[![Coverage](https://github.com/PartExa/PartExa/workflows/Coverage/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ACoverage)
 
 ## Releases
 
