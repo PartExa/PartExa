@@ -14,13 +14,17 @@ Making use of the sophisticated interfaces and data structures provided by deal.
 
 ## Documentation
 
-A source code documentation of PartExa is provided with [Doxygen](https://partexa.github.io/PartExa-Doxygen/).
-The test coverage of PartExa is given in this [coverage report](https://partexa.github.io/PartExa-Coverage/).
+The documentation of PartExa is twofold and based on
+* installation, user, and developer guides given in a [Sphinx](https://partexa.github.io/PartExa-Sphinx/) documentation,
+* and a source code documentation provided with [Doxygen](https://partexa.github.io/PartExa-Doxygen/).
+
+Besides, the test coverage of PartExa is given in this [coverage report](https://partexa.github.io/PartExa-Coverage/).
 
 ## Continuous Integration
 
 [![Indent](https://github.com/PartExa/PartExa/workflows/Indent/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3AIndent)
 [![GitHub CI](https://github.com/PartExa/PartExa/workflows/GitHub%20CI/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3A%22GitHub+CI%22)
+[![Sphinx](https://github.com/PartExa/PartExa/workflows/Sphinx/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ASphinx)
 [![Doxygen](https://github.com/PartExa/PartExa/workflows/Doxygen/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ADoxygen)
 [![Coverage](https://github.com/PartExa/PartExa/workflows/Coverage/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ACoverage)
 
