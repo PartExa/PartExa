@@ -14,8 +14,10 @@ Making use of the sophisticated interfaces and data structures provided by deal.
 
 ## Documentation
 
+A detailed description on how to configure and build PartExa is given in the [Installation instructions](https://partexa.github.io/PartExa-Sphinx/installation/installation.html).
+
 The documentation of PartExa is twofold and based on
-* installation, user, and developer guides given in a [Sphinx](https://partexa.github.io/PartExa-Sphinx/) documentation,
+* installation and development guides given in a [Sphinx](https://partexa.github.io/PartExa-Sphinx/) documentation,
 * and a source code documentation provided with [Doxygen](https://partexa.github.io/PartExa-Doxygen/).
 
 Besides, the test coverage of PartExa is given in this [coverage report](https://partexa.github.io/PartExa-Coverage/).
