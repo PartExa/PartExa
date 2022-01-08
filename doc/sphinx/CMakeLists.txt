@@ -2,7 +2,7 @@
 ##
 ## PartExa - A Particle Library for the Exa-Scale
 ##
-## Copyright (C) 2021 by the PartExa authors
+## Copyright (C) 2021-2022 by the PartExa authors
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ IF (${SPHINX_FOUND})
   SET(PARTEXA_LOGO ${CMAKE_SOURCE_DIR}/doc/logo/logo_white_rounded_small.png)
 
   ADD_CUSTOM_TARGET(sphinx
-    COMMAND ${SPHINX_EXECUTABLE} -b html -w sphinx.err -Dhtml_logo=${PARTEXA_LOGO} ${SPHINX_SOURCE} ${SPHINX_BUILD} > sphinx.out
+    COMMAND ${SPHINX_EXECUTABLE} -b html -w sphinx.err -Dhtml_logo=${PARTEXA_LOGO} -Dhtml_favicon=${PARTEXA_LOGO} ${SPHINX_SOURCE} ${SPHINX_BUILD} > sphinx.out
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Generating Sphinx documentation"
     )
