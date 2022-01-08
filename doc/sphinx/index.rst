@@ -45,3 +45,9 @@ coupling of PartExa with other deal.II-based programs.
    :caption: Installation guide
 
    installation/installation.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Development guide
+
+   developer/developer.rst
