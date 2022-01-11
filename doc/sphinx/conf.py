@@ -18,6 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'PartExa - A Particle Library for the Exa-Scale'
+copyright = '2021-2022 by the PartExa authors'
 
 
 # -- General configuration ---------------------------------------------------
