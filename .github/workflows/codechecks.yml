@@ -1,0 +1,50 @@
+name: Code Checks
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+  - cron:  '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  clang-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: DoozyX/clang-format-lint-action@v0.11
+        with:
+          source: '.'
+          exclude: ''
+          extensions: 'h,cc'
+          clangFormatVersion: 11
+          inplace: true
+
+  license-header:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check changed files
+        if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+        run: |
+          ./utilities/license-header/check-changed-files.sh >> license.out 2>> license.err
+
+      - name: Check all files
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+        run: |
+          ./utilities/license-header/check-all-files.sh >> license.out 2>> license.err
+
+      - name: Test
+        run: |
+          if [ ! -f license.out ]; then echo "No license header check output file found!"; exit 1; fi
+          if [ -s license.out ]; then echo "License header check failed with the following output:"; cat license.out; exit 1; fi
+          if [ ! -f license.err ]; then echo "No license header check error file found!"; exit 1; fi
+          if [ -s license.err ]; then echo "License header check failed with the following error(s):"; cat license.err; exit 1; fi
+          echo "License header check passed."
