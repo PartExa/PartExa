@@ -24,9 +24,10 @@
 Development instructions
 ========================
 
-This page provides development instructions.
+This page provides general development instructions which should be consistently followed.
 
 .. toctree::
    :maxdepth: 2
 
    documentation.rst
+   codeconventions.rst
