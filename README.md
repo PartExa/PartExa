@@ -1,5 +1,11 @@
 # PartExa - A Particle Library for the Exa-Scale
 
+[![Code Checks](https://github.com/PartExa/PartExa/workflows/Code%20Checks/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3A%22Code+Checks%22)
+[![GitHub CI](https://github.com/PartExa/PartExa/workflows/GitHub%20CI/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3A%22GitHub+CI%22)
+[![Coverage](https://github.com/PartExa/PartExa-Coverage/blob/master/badge/badge.svg)](https://partexa.github.io/PartExa-Coverage/)
+[![Sphinx](https://github.com/PartExa/PartExa-Sphinx/blob/master/badge/badge.svg)](https://partexa.github.io/PartExa-Sphinx/)
+[![Doxygen](https://github.com/PartExa/PartExa-Doxygen/blob/master/badge/badge.svg)](https://partexa.github.io/PartExa-Doxygen/)
+
 <img align="right" width="120" height="120" src="doc/logo/logo_gray_rounded.png">
 
 PartExa is an open-source particle library written in C++ using state-of-the-art programming techniques. PartExa strongly depends on the finite element library [deal.II](https://www.dealii.org/) along with [p4est](https://www.p4est.org/) for parallel distributed adaptive quadtrees and octrees. deal.II provides basic particle functionality with a strong focus on efficient data structures and aspects of parallelization.
@@ -21,14 +27,6 @@ The documentation of PartExa is twofold and based on
 * and a source code documentation provided with [Doxygen](https://partexa.github.io/PartExa-Doxygen/).
 
 Besides, the test coverage of PartExa is given in this [coverage report](https://partexa.github.io/PartExa-Coverage/).
-
-## Continuous Integration
-
-[![Indent](https://github.com/PartExa/PartExa/workflows/Indent/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3AIndent)
-[![GitHub CI](https://github.com/PartExa/PartExa/workflows/GitHub%20CI/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3A%22GitHub+CI%22)
-[![Sphinx](https://github.com/PartExa/PartExa/workflows/Sphinx/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ASphinx)
-[![Doxygen](https://github.com/PartExa/PartExa/workflows/Doxygen/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ADoxygen)
-[![Coverage](https://github.com/PartExa/PartExa/workflows/Coverage/badge.svg)](https://github.com/PartExa/PartExa/actions?query=workflow%3ACoverage)
 
 ## Releases
 
