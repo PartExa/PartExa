@@ -39,6 +39,11 @@ jobs:
           if [ ! -f doxygen.err ]; then echo "No Doxygen error file found!"; exit 1; fi
           if [ -s doxygen.err ]; then echo "Doxygen failed with the following error(s):"; cat doxygen.err; exit 1; else echo "Doxygen passed."; fi
 
+      - name: Badge
+        run: |
+          mkdir ./build/doc/doxygen/html/badge
+          wget "https://img.shields.io/static/v1?label=Doc&labelColor=323940&message=Doxygen&color=blue" -O ./build/doc/doxygen/html/badge/badge.svg
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:

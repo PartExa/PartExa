@@ -48,6 +48,11 @@ jobs:
           if [ ! -f sphinx.err ]; then echo "No Sphinx error file found!"; exit 1; fi
           if [ -s sphinx.err ]; then echo "Sphinx failed with the following error(s):"; cat sphinx.err; exit 1; else echo "Sphinx passed."; fi
 
+      - name: Badge
+        run: |
+          mkdir ./build/doc/sphinx/html/badge
+          wget "https://img.shields.io/static/v1?label=Doc&labelColor=323940&message=Sphinx&color=blue" -O ./build/doc/sphinx/html/badge/badge.svg
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
