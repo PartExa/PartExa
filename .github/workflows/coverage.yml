@@ -21,7 +21,7 @@ jobs:
       - name: Setup
         run: |
           apt-get update
-          apt-get install -y lcov
+          apt-get install -y lcov bc
           
       - uses: actions/checkout@v2
 
@@ -40,6 +40,13 @@ jobs:
           lcov --remove coverage.info '*/tests/*' '*/CMakeCXXCompilerId.cpp' -o coverage_filtered.info >> coverage.out 2>> coverage.err  2>> coverage.err
           genhtml coverage_filtered.info --legend --demangle-cpp --output-directory ./coverage_report --title "PartExa coverage report" >> coverage.out 2>> coverage.err
           grep "Overall coverage rate:" -A 2 coverage.out
+
+      - name: Badge
+        run: |
+          mkdir ./coverage_report/badge
+          CVGE="$(grep "Overall coverage rate:" -A 2 coverage.out | grep "lines" | grep -oE "[[:digit:]]{1,3}.[[:digit:]]")"
+          if (( $(echo "$CVGE < 75.0" | bc -l) )); then COLOR=E03E28; elif (( $(echo "$CVGE < 90.0" | bc -l) )); then COLOR=E8C62E; else COLOR=34D058; fi
+          wget "https://img.shields.io/static/v1?label=Coverage&labelColor=323940&message=$CVGE%25&color=$COLOR" -O ./coverage_report/badge/badge.svg
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
