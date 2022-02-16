@@ -46,16 +46,23 @@ header that looks, e.g., for `CMake` files, as:
 For convenience, scripts are provided that check the license header of all files respectively of
 files changed with respect to the latest master.
 
-To check the license headers of all files execute:
+To check the license headers of all files as of the current checked out commit execute:
 
 .. code-block:: console
 
    cd <partexa_source>
-   ./utilities/license-header/check-all-files.sh
+   ./utilities/license-header/run-check-on-current-head.sh
 
-To check the license headers of all files changed with respect to the latest master version execute:
+To check the license headers of all files changed on the current branch with respect to the latest master version execute:
 
 .. code-block:: console
 
    cd <partexa_source>
-   ./utilities/license-header/check-changed-files.sh
+   ./utilities/license-header/run-check-on-current-branch.sh
+
+Finally, to check the license headers of all indexed files prior to a commit execute:
+
+.. code-block:: console
+
+   cd <partexa_source>
+   ./utilities/license-header/run-check-on-indexed-files.sh
