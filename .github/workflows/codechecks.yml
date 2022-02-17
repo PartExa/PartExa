@@ -34,12 +34,12 @@ jobs:
       - name: Check changed files
         if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
         run: |
-          ./utilities/license-header/check-changed-files.sh >> license.out 2>> license.err
+          ./utilities/license-header/run-check-on-current-branch.sh >> license.out 2>> license.err
 
       - name: Check all files
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         run: |
-          ./utilities/license-header/check-all-files.sh >> license.out 2>> license.err
+          ./utilities/license-header/run-check-on-current-head.sh >> license.out 2>> license.err
 
       - name: Test
         run: |

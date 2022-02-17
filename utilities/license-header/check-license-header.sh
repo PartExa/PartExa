@@ -20,39 +20,26 @@
 ##
 ## ---------------------------------------------------------------------
 
-# check argument
+# check arguments
 if [[ -f $1 ]]; then
-  filepath=$1
+  file=$1
 else
-  echo "no file provided"
+  echo "No file provided!"
   exit 1
 fi
 
-# determine file name without full path
-filename=$(basename $filepath)
-
-# examine file type and determine comment symbol
-if [[ $filename == CMakeLists.txt || $filename == *.cmake || $filename == *.sh ]]; then
-  comment="##"
-elif [[ $filename == *.h || $filename == *.h.in || $filename == *.cc ]]; then
-  comment="\/\/" # note: escape the forward slashes
-elif [[ $fileext == *.rst ]]; then
-  comment=".."
+if [[ -n $2 ]]; then
+  comment=$2
 else
-  exit 0 # no license header for this file
+  echo "No comment symbol provided!"
+  exit 1
 fi
 
-# get the year the file is added to the repository
-yearadded=$(git log --diff-filter=A --follow --find-renames=90% --format=%ad --date=format:'%Y' -- $filepath | tail -n 1)
-
-# get the year of the last modification of the file
-yearlastmod=$(git log --format="%ad" --date=format:'%Y' --max-count=1 -- $filepath)
-
-# generate range of years for license header
-if [[ "$yearadded" == "$yearlastmod" ]]; then
-  years=$yearadded
+if [[ -n $3 ]]; then
+  years=$3
 else
-  years=$yearadded-$yearlastmod
+  echo "No year(s) provided!"
+  exit 1
 fi
 
 # generate correct license header
@@ -62,19 +49,19 @@ sed -e "s/\${comment}/$comment/" -e "s/\${years}/$years/" ./utilities/license-he
 headerlines=$(wc -l < ./utilities/license-header/template-license-header)
 
 # check for shebang in first line
-if [[ $(head -c 2 $filepath) == "#!" ]]; then
+if [[ $(head -c 2 $file) == "#!" ]]; then
   shebang=1
 else
   shebang=0
 fi
 
 # get number of different lines
-numlinediff=$(sed -n "$((1+$shebang)),$(($headerlines+$shebang)) p" $filepath | diff --side-by-side --suppress-common-lines correct-license-header - | wc -l)
+numlinediff=$(sed -n "$((1+$shebang)),$(($headerlines+$shebang)) p" $file | diff --side-by-side --suppress-common-lines correct-license-header - | wc -l)
 
 # print warning and correct header if non-compliant license header found
 if [[ ! $numlinediff == 0 ]]; then
   echo "---"
-  echo "Warning: Non-compliant license header for file: '$filepath'"
+  echo "Warning: Non-compliant license header for file: '$file'"
   echo "The correct license header reads:"
   cat correct-license-header
 fi
