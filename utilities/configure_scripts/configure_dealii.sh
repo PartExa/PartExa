@@ -23,7 +23,7 @@
 # You may want to deactivate this line
 rm -rf CMakeFiles/ CMakeCache.txt
 
-# It is recommended to copy this file to your PartExa build directory via
+# It is recommended to copy this file to your deal.II build directory via
 # ```bash
 # cd <dealii_build>
 # cp <partexa_source>/utilities/configure_scripts/configure_partexa.sh .
