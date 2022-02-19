@@ -1,32 +1,15 @@
-# Prerequisites
-*.d
+# temporary files
+*~
+*.swp
+*.swo
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# eclipse
+/.cproject
+/.project
+/.settings
 
-# Precompiled Headers
-*.gch
-*.pch
+# visual studio code
+/.vscode
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# clion
+/.idea
