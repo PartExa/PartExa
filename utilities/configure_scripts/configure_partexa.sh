@@ -23,14 +23,10 @@
 # You may want to deactivate this line
 rm -rf CMakeFiles/ CMakeCache.txt
 
-# It is recommended to copy this file to your PartExa build directory via
-# ```bash
-# cd <partexa_build>
-# cp <partexa_source>/utilities/configure_scripts/configure_partexa.sh .
-# ```
+# It is recommended to copy this file to your PartExa build directory.
 
 # Having copied the file, you need to adjust the paths specified below
-PARTEXA_SOURCE=../
+PARTEXA_SOURCE=/path/to/partexa
 DEAL_BUILD_OR_INSTALL=/path/to/dealii
 
 # You may want to switch between Debug/Release mode

@@ -23,27 +23,16 @@
 # You may want to deactivate this line
 rm -rf CMakeFiles/ CMakeCache.txt
 
-# It is recommended to copy this file to your deal.II build directory via
-# ```bash
-# cd <dealii_build>
-# cp <partexa_source>/utilities/configure_scripts/configure_partexa.sh .
-# ```
+# It is recommended to copy this file to your deal.II build directory.
 
 # Having copied the file, you need to adjust the paths specified below
 P4EST=/path/to/p4est
 DEAL=/path/to/dealii
+DEAL_INSTALL=/path/to/dealii_install
 
 cmake \
-    -D CMAKE_BUILD_TYPE="DebugRelease" \
-    -D CMAKE_CXX_FLAGS="-std=c++17 -march=native -Wno-array-bounds -Wno-literal-suffix -pthread" \
-    -D DEAL_II_CXX_FLAGS_RELEASE="-O3" \
-    -D DEAL_II_CXX_FLAGS_DEBUG="-Og" \
-    -D CMAKE_C_FLAGS="-march=native -Wno-array-bounds" \
-    -D DEAL_II_WITH_MPI:BOOL="ON" \
-    -D DEAL_II_LINKER_FLAGS="-lpthread" \
-    -D DEAL_II_WITH_64BIT_INDICES="ON" \
+    -D CMAKE_INSTALL_PREFIX="$DEAL_INSTALL" \
+    -D DEAL_II_WITH_MPI="ON" \
     -D DEAL_II_WITH_P4EST="ON" \
     -D P4EST_DIR="$P4EST" \
-    -D DEAL_II_COMPONENT_DOCUMENTATION="OFF" \
-    -D DEAL_II_COMPONENT_EXAMPLES="OFF" \
     $DEAL
