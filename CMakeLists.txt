@@ -29,7 +29,7 @@ PRINT_PARTEXA_HEADER()
 
 # deal.II
 FIND_PACKAGE(
-  deal.II 10.0.0 QUIET
+  deal.II 9.4.0 QUIET
   HINTS ${deal.II_DIR} ${DEAL_II_DIR} $ENV{DEAL_II_DIR}
   )
 IF(NOT ${deal.II_FOUND})
